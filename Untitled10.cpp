@@ -60,6 +60,15 @@ struct SinglyLinkList {
 			unshift();
 		}
 	}
+	
+	void pushMore() {
+		int n;
+		cout<<"\nNhap so luong node muon nhap: ";
+		cin>>n;
+		for (int i = 0; i < n; i++) {
+			push();
+		}
+	}
 };
 
 void coutNode(SinglyLinkList list, int n) {
@@ -83,6 +92,7 @@ int main() {
 		if (choose == 1) list.unshift();
 		else if (choose == 2) list.push();
 		else if (choose == 3) list.unshiftMore();
+		else if (choose == 4) list.pushMore();
 		else if (choose == 20) coutNode(list, list.length);
 	} while (choose != 0); 
 	return 0;
