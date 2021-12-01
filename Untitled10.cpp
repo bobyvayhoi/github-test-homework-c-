@@ -71,14 +71,38 @@ struct SinglyLinkList {
 	}
 	
 	void findIdx() {
-		int n;
-		cout<<"\nNhap vi tri node muon tim: ";
-		cin>>n;
-		Node *node = head;
-		for (int i = 0; i < n; i++) {
-			if (i + 1 == n) cout<<"\nNode thu "<<n<<" la: "<<node->val<<endl;
-			else node = node->next;
+		if (length != 0) {
+			int n;
+			do {
+				cout<<"\nNhap vi tri node muon tim: ";
+				cin>>n;
+			} while (n > length);
+			Node *node = head;
+			for (int i = 0; i < n; i++) {
+				if (i + 1 == n) cout<<"\nNode thu "<<n<<" la: "<<node->val<<"\n";
+				else node = node->next;
+			}
 		}
+	}
+	
+	int findNodeHelper() {
+		if (length != 0) {
+			int n;
+			cout<<"\nNhap gia tri node muon tim: ";
+			cin>>n;
+			Node *tmp = head;
+			for (int i = 0; i < length; i++) {
+				if (tmp->val == n) return 1;
+				tmp = tmp->next;
+			}
+			return 0;
+		}
+	}
+	
+	void findNode() {
+		int n = findNodeHelper();
+		if (n == 1) cout<<"\nCo node\n";
+		else cout<<"\nKhong co node\n";
 	}
 };
 
@@ -97,7 +121,7 @@ int main() {
 	do {
 		cout<<"\n0 - Thoat\n1 - Them 1 node vao dau danh sach\n2 - Them 1 node vao cuoi danh sach";
 		cout<<"\n3 - Them nhieu node vao dau danh sach\n4 - Them nhieu node vao cuoi danh sach";
-		cout<<"\n5 - Hien thi gia tri node thu n";
+		cout<<"\n5 - Hien thi gia tri node thu n\n6 - Tim 1 node dua theo gia tri nhap vao";
 		cout<<"\n20 - Xuat\n";
 		cout<<"Chon: ";
 		cin>>choose;
@@ -106,6 +130,7 @@ int main() {
 		else if (choose == 3) list.unshiftMore();
 		else if (choose == 4) list.pushMore();
 		else if (choose == 5) list.findIdx();
+		else if (choose == 6) list.findNode();
 		else if (choose == 20) coutNode(list, list.length);
 	} while (choose != 0); 
 	return 0;
