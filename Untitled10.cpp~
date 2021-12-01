@@ -12,12 +12,13 @@ struct SinglyLinkList {
 	Node *head;
 	Node *tail;
 	int length;	
+	
+	void init() {
+		head = NULL;
+		tail = NULL;
+		length = 0;
+	}
 };
-
-void init(SinglyLinkList &list) {
-	list.head = list.tail = NULL;
-	list.length = 0;
-}
 
 void unshift(SinglyLinkList	&list) {
 	Node *newNode;
@@ -45,7 +46,7 @@ void coutNode(SinglyLinkList list, int n) {
 
 int main() { 
 	SinglyLinkList list;
-	init(list);
+	list.init();
 	int choose;
 	do {
 		cout<<"0 - Thoat\n1 - Nhap node\n2 - Xuat";
