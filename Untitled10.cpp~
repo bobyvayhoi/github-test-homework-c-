@@ -18,23 +18,23 @@ struct SinglyLinkList {
 		tail = NULL;
 		length = 0;
 	}
+	
+	void unshift() {
+		Node *newNode;
+		newNode = new Node;
+		int x;
+		cout<<"\nNhap gia tri node: "; 
+		cin>>x;
+		newNode->val = x;
+		if(!head) {
+	        head = newNode;
+	        tail = newNode;
+	    }
+	    newNode->next = head;
+	    head = newNode;
+	    length++;
+	}
 };
-
-void unshift(SinglyLinkList	&list) {
-	Node *newNode;
-	newNode = new Node;
-	int x;
-	cout<<"Nhap gia tri node: "; 
-	cin>>x;
-	newNode->val = x;
-	if(!list.head) {
-        list.head = newNode;
-        list.tail = newNode;
-    }
-    newNode->next = list.head;
-    list.head = newNode;
-    list.length++;
-}
 
 void coutNode(SinglyLinkList list, int n) {
 	Node *tmp = list.head;
@@ -49,10 +49,10 @@ int main() {
 	list.init();
 	int choose;
 	do {
-		cout<<"0 - Thoat\n1 - Nhap node\n2 - Xuat";
+		cout<<"\n0 - Thoat\n1 - Nhap node\n2 - Xuat\n";
 		cout<<"Chon: ";
 		cin>>choose;
-		if (choose == 1) unshift(list);
+		if (choose == 1) list.unshift();
 		else if (choose == 2) coutNode(list, list.length);
 	} while (choose != 0); 
 	return 0;
