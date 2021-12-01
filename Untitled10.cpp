@@ -34,6 +34,28 @@ struct SinglyLinkList {
 	    head = newNode;
 	    length++;
 	}
+	
+	void push() {
+		Node *newNode;
+		newNode = new Node;
+		int x;
+		cout<<"\nNhap gia tri node: "; 
+		cin>>x;
+		newNode->val = x;
+		if(!head) {
+	        head = newNode;
+	        tail = newNode;
+	    } else {
+    		tail->next = newNode;
+	    	tail = newNode;
+    	}
+	    length++;
+	}
+	
+	void unshiftMore() {
+		int n;
+		cout<<"\n";
+	}
 };
 
 void coutNode(SinglyLinkList list, int n) {
@@ -49,11 +71,14 @@ int main() {
 	list.init();
 	int choose;
 	do {
-		cout<<"\n0 - Thoat\n1 - Nhap node\n2 - Xuat\n";
+		cout<<"\n0 - Thoat\n1 - Them 1 node vao dau danh sach\n2 - Them 1 node vao cuoi danh sach";
+		cout<<"\n3 - Them nhieu node vao dau danh sach\n4 - Them nhieu node vao cuoi danh sach";
+		cout<<"\n20 - Xuat\n";
 		cout<<"Chon: ";
 		cin>>choose;
 		if (choose == 1) list.unshift();
-		else if (choose == 2) coutNode(list, list.length);
+		else if (choose == 2) list.push();
+		else if (choose == 20) coutNode(list, list.length);
 	} while (choose != 0); 
 	return 0;
 }
