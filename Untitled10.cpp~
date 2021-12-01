@@ -69,6 +69,17 @@ struct SinglyLinkList {
 			push();
 		}
 	}
+	
+	void findIdx() {
+		int n;
+		cout<<"\nNhap vi tri node muon tim: ";
+		cin>>n;
+		Node *node = head;
+		for (int i = 0; i < n; i++) {
+			if (i + 1 == n) cout<<"\nNode thu "<<n<<" la: "<<node->val<<endl;
+			else node = node->next;
+		}
+	}
 };
 
 void coutNode(SinglyLinkList list, int n) {
@@ -86,6 +97,7 @@ int main() {
 	do {
 		cout<<"\n0 - Thoat\n1 - Them 1 node vao dau danh sach\n2 - Them 1 node vao cuoi danh sach";
 		cout<<"\n3 - Them nhieu node vao dau danh sach\n4 - Them nhieu node vao cuoi danh sach";
+		cout<<"\n5 - Hien thi gia tri node thu n";
 		cout<<"\n20 - Xuat\n";
 		cout<<"Chon: ";
 		cin>>choose;
@@ -93,6 +105,7 @@ int main() {
 		else if (choose == 2) list.push();
 		else if (choose == 3) list.unshiftMore();
 		else if (choose == 4) list.pushMore();
+		else if (choose == 5) list.findIdx();
 		else if (choose == 20) coutNode(list, list.length);
 	} while (choose != 0); 
 	return 0;
