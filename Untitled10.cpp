@@ -135,15 +135,43 @@ struct SinglyLinkList {
 	void showLength() {
 		cout<<"\nCo "<<length<<" node trong xau\n";
 	}
-};
-
-void coutNode(SinglyLinkList list, int n) {
-	Node *tmp = list.head;
-	for (int i = 0; i < n; i++) {
-		cout<<tmp->val<<" ";
-		tmp = tmp->next;
+	
+	void showNode() {
+		if (length != 0) {
+			cout<<"\n";
+			Node *node = head;
+			for (int i = 0; i < length; i++) {
+				cout<<node->val<<" ";
+				node = node->next;
+			}
+			cout<<"\n";
+		} else cout<<"\nKhong co node\n";
+		
 	}
-}
+	
+	void deleteNode() {
+		if (length != 0) {
+			int n = findNodeHelper();
+			if (n != 0) {
+				Node *node = head;
+				for (int i = 0; i < length; i++) {
+					if (head->val == n) {
+						head = head->next;
+						length--;
+						break;
+					}
+					if (node->next->val	 == n) {
+						node->next = node->next->next;
+						length--;
+						break;
+					}
+					node = node->next;
+				}
+			}
+			else cout<<"\nKhong co node\n";
+		}
+	}
+};
 
 int main() { 
 	SinglyLinkList list;
@@ -154,6 +182,7 @@ int main() {
 		cout<<"\n3 - Them nhieu node vao dau danh sach\n4 - Them nhieu node vao cuoi danh sach";
 		cout<<"\n5 - Hien thi gia tri node thu n\n6 - Tim 1 node dua theo gia tri nhap vao";
 		cout<<"\n7 - Them 1 node vao sau 1 node nao do\n8 - Dem so luong node trong xau";
+		cout<<"\n9 - Hien thi danh sach cac node trong xau\n10 - Huy 1 node (nhap gia tri can tim)";
 		cout<<"\n20 - Xuat\n";
 		cout<<"Chon: ";
 		cin>>choose;
@@ -165,7 +194,8 @@ int main() {
 		else if (choose == 6) list.findNode();
 		else if (choose == 7) list.insertNode();
 		else if (choose == 8) list.showLength();
-		else if (choose == 20) coutNode(list, list.length);
+		else if (choose == 9) list.showNode();
+		else if (choose == 10) list.deleteNode();
 	} while (choose != 0); 
 	return 0;
 }
