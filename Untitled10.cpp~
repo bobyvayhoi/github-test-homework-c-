@@ -171,6 +171,31 @@ struct SinglyLinkList {
 			else cout<<"\nKhong co node\n";
 		}
 	}
+	
+	void sumAll() {
+		if (length != 0) {
+			int sum = 0;
+			Node *node = head;
+			for (int i = 0; i < length; i++) {
+				sum += node->val;
+				node = node->next;
+			}
+			cout<<"\nTong gia tri la: "<<sum<<"\n";
+		}
+	}
+	
+	void minMax() {
+		if (length != 0) {
+			Node *node = head;
+			int min = node->val, max = node->val;
+			for (int i = 0; i < length; i++) {
+				node = node->next;
+				if (node->val < min) min = node->val;
+				if (node->val > max) max = node->val;
+			}
+			cout<<"\nMin la: "<<min<<"\nMax la: "<<max<<"\n";
+		}
+	}
 };
 
 int main() { 
@@ -183,7 +208,9 @@ int main() {
 		cout<<"\n5 - Hien thi gia tri node thu n\n6 - Tim 1 node dua theo gia tri nhap vao";
 		cout<<"\n7 - Them 1 node vao sau 1 node nao do\n8 - Dem so luong node trong xau";
 		cout<<"\n9 - Hien thi danh sach cac node trong xau\n10 - Huy 1 node (nhap gia tri can tim)";
-		cout<<"\n20 - Xuat\n";
+		cout<<"\n11 - Huy toan bo danh sach\n12 - Tinh tong gia tri toan bo danh sach";
+		cout<<"\n13 - Tim gia tri lon nhat va nho nhat trong danh sach";
+		cout<<"\n";
 		cout<<"Chon: ";
 		cin>>choose;
 		if (choose == 1) list.unshift();
@@ -196,6 +223,9 @@ int main() {
 		else if (choose == 8) list.showLength();
 		else if (choose == 9) list.showNode();
 		else if (choose == 10) list.deleteNode();
+		else if (choose == 11) list.init();
+		else if (choose == 12) list.sumAll();
+		else if (choose == 13) list.minMax();
 	} while (choose != 0); 
 	return 0;
 }
