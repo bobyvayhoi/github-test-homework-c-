@@ -266,6 +266,16 @@ struct SinglyLinkList {
 			}
 		}
 	}
+	
+	void addTwo() {
+		if (length != 0) {
+			Node *node = head;
+			for (int i = 0; i < length; i++) {
+				node->val += 2;
+				node = node->next;
+			}
+		}
+	}
 };
 
 void countNode(SinglyLinkList list) {
@@ -296,6 +306,7 @@ int main() {
 		cout<<"\n13 - Tim gia tri lon nhat va nho nhat trong danh sach\n14 - Sap xep danh sach voi gia tri tang dan";
 		cout<<"\n15 - Hien thi gia tri toan bo danh sach theo thu tu tu cuoi den dau\n17 - Dem so lan xuat hien cua mot node trong danh sach";
 		cout<<"\n18 - Hien thi cac node la so nguyen to\n19 - Huy tat ca cac node la so nguyen to";
+		cout<<"\n20 - Tang gia tri moi node len 2";
 		cout<<"\nChon: ";
 		cin>>choose;
 		if (choose == 1) list.unshift();
@@ -316,6 +327,7 @@ int main() {
 		else if (choose == 17) countNode(list);
 		else if (choose == 18) list.showNode(1);
 		else if (choose == 19) list.deletePrimeNode();
+		else if (choose == 20) list.addTwo();
 	} while (choose != 0); 
 	return 0;
 }
