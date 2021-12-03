@@ -149,9 +149,11 @@ struct SinglyLinkList {
 		
 	}
 	
-	void deleteNode() {
+	void deleteNode(int num = 0) {
 		if (length != 0) {
-			int n = findNodeHelper();
+			int n;
+			if (num == 0) n = findNodeHelper();
+			else n = num;
 			if (n != 0) {
 				Node *node = head;
 				for (int i = 0; i < length; i++) {
@@ -196,7 +198,66 @@ struct SinglyLinkList {
 			cout<<"\nMin la: "<<min<<"\nMax la: "<<max<<"\n";
 		}
 	}
+	
+	void changeValue(int &a, int &b) {
+		int tmp = a;
+		a = b;
+		b = tmp;
+	}
+	
+	void sort() {
+		if (length != 0) {
+			int l = length;
+			do {
+				Node *node = head;
+				for (int i = 0; i < l - 1; i++) {
+					if (node->val > node->next->val) changeValue(node->val, node->next->val);
+					node = node->next;
+				}
+				l--;
+			} while(l > 0);
+		}
+	}
+	
+	void showEndToStart() {
+		if (length != 0) {
+			int l = length;
+			cout<<"\n";
+			do {
+				Node *node = head;
+				for (int i = 0; i < l; i++) {
+					if (i == l - 1) cout<<node->val<<" ";
+					node = node->next;
+				}
+				l--;
+			} while(l > 0);
+		}
+	}
+	
+	int countNode(int x) {
+		int count = 0;
+		Node *node = head;
+		for (int i = 0; i < length; i++) {
+			if (node->val == x) count++;
+			node = node->next;
+		}
+		return count;
+	}
 };
+
+void countNode(SinglyLinkList list) {
+	if (list.length != 0) {
+		do {
+			int headVal = list.head->val;
+			int count = list.countNode(headVal);
+			cout<<"\nSo "<<headVal<<" co "<<count;
+			for (int i = 0; i < count; i++) {
+				list.deleteNode(headVal);
+			}
+		} while (list.length > 0);
+		cout<<"\n";
+	}
+}
 
 int main() { 
 	SinglyLinkList list;
@@ -209,9 +270,10 @@ int main() {
 		cout<<"\n7 - Them 1 node vao sau 1 node nao do\n8 - Dem so luong node trong xau";
 		cout<<"\n9 - Hien thi danh sach cac node trong xau\n10 - Huy 1 node (nhap gia tri can tim)";
 		cout<<"\n11 - Huy toan bo danh sach\n12 - Tinh tong gia tri toan bo danh sach";
-		cout<<"\n13 - Tim gia tri lon nhat va nho nhat trong danh sach";
-		cout<<"\n";
-		cout<<"Chon: ";
+		cout<<"\n13 - Tim gia tri lon nhat va nho nhat trong danh sach\n14 - Sap xep danh sach voi gia tri tang dan";
+		cout<<"\n15 - Hien thi gia tri toan bo danh sach theo thu tu tu cuoi den dau\n17 - Dem so lan xuat hien cua mot node trong danh sach";
+		
+		cout<<"\nChon: ";
 		cin>>choose;
 		if (choose == 1) list.unshift();
 		else if (choose == 2) list.push();
@@ -226,6 +288,9 @@ int main() {
 		else if (choose == 11) list.init();
 		else if (choose == 12) list.sumAll();
 		else if (choose == 13) list.minMax();
+		else if (choose == 14) list.sort();
+		else if (choose == 15) list.showEndToStart();
+		else if (choose == 17) countNode(list);
 	} while (choose != 0); 
 	return 0;
 }
