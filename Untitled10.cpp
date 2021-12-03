@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <conio.h>
+#include <cmath>
 using namespace std;
 
 struct Node {
@@ -136,12 +137,24 @@ struct SinglyLinkList {
 		cout<<"\nCo "<<length<<" node trong xau\n";
 	}
 	
-	void showNode() {
+	int primeNum(int n) {
+		if (n <= 1) return 0;
+		for (int i = 2; i <= sqrt(n); i++) {
+			if (n % i == 0) return 0;
+		}
+		return 1;
+	}
+	
+	void showNode(int choose = 0) {
 		if (length != 0) {
 			cout<<"\n";
 			Node *node = head;
 			for (int i = 0; i < length; i++) {
-				cout<<node->val<<" ";
+				if (choose == 0) {
+					cout<<node->val<<" ";
+				} else {
+					if (primeNum(node->val)) cout<<node->val<<" ";
+				}
 				node = node->next;
 			}
 			cout<<"\n";
@@ -243,6 +256,16 @@ struct SinglyLinkList {
 		}
 		return count;
 	}
+	
+	void deletePrimeNode() {
+		if (length != 0) {
+			Node *node = head;
+			for (int i = 0; i < length; i++) {
+				if (primeNum(node->val)) deleteNode(node->val);
+				node = node->next;
+			}
+		}
+	}
 };
 
 void countNode(SinglyLinkList list) {
@@ -272,7 +295,7 @@ int main() {
 		cout<<"\n11 - Huy toan bo danh sach\n12 - Tinh tong gia tri toan bo danh sach";
 		cout<<"\n13 - Tim gia tri lon nhat va nho nhat trong danh sach\n14 - Sap xep danh sach voi gia tri tang dan";
 		cout<<"\n15 - Hien thi gia tri toan bo danh sach theo thu tu tu cuoi den dau\n17 - Dem so lan xuat hien cua mot node trong danh sach";
-		
+		cout<<"\n18 - Hien thi cac node la so nguyen to\n19 - Huy tat ca cac node la so nguyen to";
 		cout<<"\nChon: ";
 		cin>>choose;
 		if (choose == 1) list.unshift();
@@ -291,6 +314,8 @@ int main() {
 		else if (choose == 14) list.sort();
 		else if (choose == 15) list.showEndToStart();
 		else if (choose == 17) countNode(list);
+		else if (choose == 18) list.showNode(1);
+		else if (choose == 19) list.deletePrimeNode();
 	} while (choose != 0); 
 	return 0;
 }
